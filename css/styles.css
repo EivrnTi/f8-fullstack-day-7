@@ -4,6 +4,8 @@
 :root {
   --font-source-sans-pro: "Source Sans Pro", sans-serif;
   --font-pt-sans: "PT Sans", sans-serif;
+  --color-primary: #b80257;
+  --color-secondary: #783df0;
 }
 
 * {
@@ -34,92 +36,249 @@ input:focus::placeholder {
 }
 
 .container {
-  width: 1170px;
+  width: 1200px;
   margin: 0 auto;
 }
 
-.top-site {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(../img/bg-banner.jpg) no-repeat center / cover;
-  height: 496px;
+a {
+  text-decoration: none;;
 }
 
-header .container {
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Top Page */
+.top-page {
   display: flex;
-  padding-top: 40px;
+  margin-bottom: 110px;
+  height: 496px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(../img/bg-banner.jpg) no-repeat center / cover;
+}
+
+.top-page .inner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+header.header {
+  min-height: 60px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.header-logo {
+  height: 34px;
+}
+
+nav.header-nav ul {
+  display: flex;
   justify-content: space-between;
 }
 
-.logo {
-  height: 33px;
-}
-
-.nav {
-  padding: 0 15px;
-}
-
-.nav ul {
-  display: flex;
-}
-
-.nav ul a {
-  display: block;
+nav.header-nav > ul > li > a {
   text-decoration: none;
-  color: #fff;
-  padding: 6px 25px 20px;
-  font-family: var(--font-pt-sans);
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1.5rem;
-  letter-spacing: 0.11rem;
-  line-height: 2.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 6px 25px 20px;
+  letter-spacing: 1.1px;
 }
 
-.left-wrapper {
+nav.header-nav li {
+  position: relative;
+}
+
+header .user-search-action {
+  position: relative;
+}
+
+header button.action-btn {
+  color: #fff;
+}
+
+header button.action-btn i {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+}
+
+header .top-page-user-action {
   display: flex;
 }
 
-header .search {
-  font-size: 18px;
-  padding-top: 6px;
-  margin-left: 8px;
-  margin-right: 28px;
-  cursor: pointer;
-  color: #fff;
+/* Sub Search */
+.user-search-action .sub-search {
+  position: absolute;
+  display: none;
+  top: 100%;
+  right: 0;
+  left: auto;
+  width: 280px;
+  height: 55px;
+  padding: 5px;
+  background-color: #fff;
 }
 
-.cart {
-  font-size: 18px;
-  cursor: pointer;
-  color: #fff;
+.user-search-action input[type="checkbox"]:checked ~ .sub-search {
+  display: block;
 }
 
-.breadcrumb {
-  margin-top: 156px;
+.sub-search input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 1px solid #ececec;
+  padding: 0 49px 0 10px;
+}
+
+.sub-search input::placeholder {
+  font-size: 1.6rem;
+}
+
+.sub-search button {
+  width: 48px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-left: none;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  background-color: rgb(184, 2, 87);
+}
+
+.hero {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: #fff;
 }
 
-.breadcrumb h1 {
-  margin-bottom: 10px;
+.hero h3 {
   font-size: 3.2rem;
+  text-transform: uppercase;
   font-weight: 700;
-  line-height: 3.5rem;
-  color: #fff;
 }
 
-.breadcrumb p {
+.hero ul {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.hero ul li {
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.8);
+  text-transform: capitalize;
+  font-family: var(--font-heading);
+  position: relative;
 }
 
-.breadcrumb a {
+li[class="space"] {
+  padding-right: 10px;
+}
+
+.hero ul li a {
+  padding: 10px;
   text-decoration: none;
-  color: #d8d9d9;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
 }
 
-.breadcrumb a:hover {
+.hero ul li a:hover {
   color: #783df0;
+}
+
+nav.header-nav li:hover .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Sub menu */
+.sub-menu {
+  position: absolute;
+  left: 0;
+  top: 200%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  min-width: 210px;
+  z-index: 10;
+
+  /* Hiệu ứng dropdown menu */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+}
+
+.sub-menu li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sub-menu li:last-child {
+  border: none;
+}
+
+.sub-menu li a {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 21px;
+  padding: 15px;
+  flex-grow: 1;
+  text-transform: capitalize;
+  transition: all 0.3s ease-in-out;
+}
+
+.sub-menu li a:hover {
+  color: #fff;
+  transform: translateX(8px);
+}
+
+.sub-menu li:hover {
+  background-color: #b80257;
+}
+
+/* Feature courses */
+.feature-courses {
+  margin-bottom: 100px;
+}
+
+.feature-courses .inner {
+  display: flex;
+  width: 100%;
 }
 
 /* side-bar */
@@ -272,7 +431,7 @@ main {
 .courses-item img:hover {
   opacity: 0.8;
   transform: scale3D(1.1, 1.1, 1);
-  cursor: pointer; /* Added cursor: pointer */
+  cursor: pointer;
 }
 
 .courses-item .course-detail {
@@ -285,7 +444,7 @@ main {
 .course-detail h2 {
   font-size: 1.8rem;
   color: #464646;
-  line-height: 3.0rem; /* Increased line-height */
+  line-height: 3rem;
 }
 
 .course-detail h2:hover {
@@ -296,7 +455,7 @@ main {
 
 .course-detail .desc {
   margin: 20px 0px;
-  line-height: 2.2rem; /* Added or adjusted line-height for the description */
+  line-height: 2.2rem;
 }
 
 .clearfix {
