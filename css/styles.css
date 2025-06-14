@@ -21,6 +21,11 @@ body {
   font-family: var(--font-source-sans-pro);
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 h1,
 h2,
 h3,
@@ -58,6 +63,8 @@ button {
   background-color: transparent;
   border: none;
   padding: 0;
+  outline: none;
+  box-shadow: none;
 }
 
 /* Top Page */
@@ -458,6 +465,34 @@ main {
   line-height: 2.2rem;
 }
 
+.course-detail a:hover {
+  transform: translateY(-5px);
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.course-detail a::before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: "";
+  top: 100%;
+  left: 5%;
+  height: 15px;
+  width: 90%;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  transition-duration: 0.3s;
+}
+
+.course-detail a:hover::before {
+  opacity: 1;
+}
+
 .clearfix {
   display: flex;
   align-items: center;
@@ -625,4 +660,27 @@ footer .button:hover {
   background-color: #fff;
   color: #b80257 !important;
   transition: all 0.5s ease-in-out;
+}
+
+.scroll-btn {
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 99;
+  background-color: #b80257;
+  font-size: 25px;
+  display: block;
+  text-align: center;
+}
+
+.scroll-btn a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 1.5rem;
 }
